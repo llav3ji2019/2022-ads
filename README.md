@@ -36,7 +36,7 @@ $ git checkout -b part1
 Решение каждой задачи - отдельный Java-класс. Можно воспользоваться классом `company.vk.polis.ads.SolveTemplate`, в котором остается реализовать лишь метод `solve`.
 
 * informatics-msk: добавлять ничего не нужно, статус решения отображается в общих результатах.
-* E-olymp: В самом PR либо в его описании, либо в комментариях к каждому классу-решению нужно добавить ссылку на submission в e-olymp, где видно, что все решение прошло все тесты.
+* E-olymp: В самом PR в его описании нужно добавить ссылку на submission в e-olymp, где видно, что решение прошло все тесты.
   Эти ссылки имеют вид "https://www.e-olymp.com/ru/submissions/5707028".
 
 Все обсуждения решения происходят в рамках комментариев к PR
@@ -69,14 +69,165 @@ $ git checkout -b part1
 
 ## ДЗ 3. Куча. Дедлайн 11.10.2022 18:29:59
 
+‼️ Ветка с решением должна ответвляться от коммита [b759305df2f671fba410b8bd21d40d8eeb6d2701](https://github.com/polis-vk/2022-ads/commit/b759305df2f671fba410b8bd21d40d8eeb6d2701):
+
+```bash
+$ git fetch upstream
+$ git checkout -b <my-branch-for-part3> b759305df2f671fba410b8bd21d40d8eeb6d2701
+```
+
 Задачки с e-olymp:
 
 * https://www.e-olymp.com/ru/problems/4039 - Хипуй
 * https://www.e-olymp.com/ru/problems/4074 - Найти медиану 2
 * https://www.e-olymp.com/ru/problems/3738 - Простая сортирока - реализовать HeapSort
 
-Реализовать методы `hasNext()` и `next()` в классе `company.vk.polis.ads.MergeIterator` так, чтобы успешно выполнялись тесты в `company.vk.polis.ads.MergeIteratorTest`. Время работы должно быть O(n logk), где n - суммарное количество всех элементов в k подаваемых на вход итераторах.
+* Реализовать методы `hasNext()` и `next()` в классе `company.vk.polis.ads.heap.MergeIterator` так, чтобы успешно выполнялись тесты в `company.vk.polis.ads.heap.MergeIteratorTest`. Время работы должно быть O(n logk), где n - суммарное количество всех элементов в k подаваемых на вход итераторах.
 
-Реализовать метод `company.vk.polis.ads.TopK#topK`, который должен возвращать список из k максимальных элементов, отсортированных по убыванию, так, чтобы выполнялись тесты в `company.vk.polis.ads.TopKTest`.
+* Реализовать метод `company.vk.polis.ads.heap.TopK#topK`, который должен возвращать список из k максимальных элементов, отсортированных по убыванию, так, чтобы выполнялись тесты в `company.vk.polis.ads.heap.TopKTest`.
 
 Локально тесты можно запустить с помощью `./gradlew test`.
+
+## ДЗ 4. Динамическое программирование. Дедлайн 18.10.2022 18:29:59
+
+Задачки с e-olymp:
+
+* https://www.e-olymp.com/ru/problems/1087 - Скобочная последовательность
+* https://www.e-olymp.com/ru/problems/15 - Мышки и зернышки
+* https://www.e-olymp.com/ru/problems/1618 - Наибольшая общая подпоследовательность
+* https://www.e-olymp.com/ru/problems/262 - Лесенка
+* https://www.e-olymp.com/ru/problems/4261 - Количество инверсий
+
+## Семинар. Дедлайн 01.11.2022 18:29:59
+
+‼️ Ветка с решением должна ответвляться от коммита [92a1d8e0e5aa598991459d52947f90ca50b14b45](https://github.com/polis-vk/2022-ads/commit/92a1d8e0e5aa598991459d52947f90ca50b14b45):
+
+```bash
+$ git fetch upstream
+$ git checkout -b <my-branch-for-workshop> 92a1d8e0e5aa598991459d52947f90ca50b14b45
+```
+
+* Реализовать в `company.vk.polis.ads.workshop.CircularBufferQueue` методы, чтобы выполнялись все тесты в `company.vk.polis.ads.workshop.CircularBufferQueueTest`
+
+* Реализовать в `company.vk.polis.ads.workshop.ImprovedInsertionSort` алгоритм "улучшенной" сортировки вставками, в котором позиция вставки находится с помощью бинарного поиска, а сдвиг элементов выполняется не по одному, а с помощью `java.lang.System#arraycopy`. Решение должно проходить тесты в `company.vk.polis.ads.workshop.ImprovedInsertionSortTest`.
+
+* Написать [JMH](https://github.com/openjdk/jmh) бенчмарки и сравнить время работы следующих алгоритмов:
+  1) обычная сортировка вставками
+  2) "улучшенная" сортировка вставками
+  3) сортировка слиянием
+  4) быстрая сортировка
+  5) пирамидальная сортировка
+
+  Посмотреть на время работы алгоритмов на различных по длине входных массивах (например, 100, 1000, 10_000, 100_000, 1_000_000 элементов). На основе полученных результатов сделать отчет в формате [Markdown](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax). В отчёте среди прочего необходимо отметить, какие алгоритмы на каких размерах массивов ведут себя лучше других. Таблички с результатами бенчмарков вставить в отчет в виде кода (а не скриншота)
+
+* Решить задачку "Верёвочки" на eolymp - https://www.eolymp.com/ru/problems/3967
+
+* Реализовать поиск максимального подмассива в классе `company.vk.polis.ads.workshop.MaxSubarray` так, чтобы успешно выполнялись тесты в `company.vk.polis.ads.workshop.MaxSubarrayTest`. Время работы решения должно быть не хуже O(n log(n))
+
+## ДЗ 6. Binary Search Tree, AVL-tree. Дедлайн 08.11.2022 18:29:59
+
+‼️ Ветка с решением должна ответвляться от коммита [fe2f22405db89b95bf9b5a034f95daf4c61e29ab](https://github.com/polis-vk/2022-ads/commit/fe2f22405db89b95bf9b5a034f95daf4c61e29ab):
+
+```bash
+$ git fetch upstream
+$ git checkout -b <my-branch-for-part6> fe2f22405db89b95bf9b5a034f95daf4c61e29ab
+```
+
+Реализовать АВЛ-дерево в `company.vk.polis.ads.bst.AvlBinarySearchTree`, чтобы выполнялись тесты `company.vk.polis.ads.bst.AvlBinarySearchTreeTest`.
+
+Решения с использованием библиотечных структур данных
+(`TreeMap`, которая на самом деле не на АВЛ работает) не принимаются.
+
+Основные методы:
+  * `Value get(Key key)` - возвращает значение по заданному ключу или `null`, если такого ключа нет
+  * `void put(Key key, Value value)` - сохраняет заданное значение по указанному ключу
+  * `Value remove(Key key)` - удаляет заданный ключ (и связанное с ним значение, возвращая его)
+
+Методы, основанные на порядке ключей:
+  * `Key min()` - возвращает минимальный ключ или `null`, если структура пустая
+  * `Value minValue()` - возвращает значение, ассоцирированное с минимальным ключом, или `null`, если структура пустая
+  * `Key max()` - возвращает максимальный ключ или `null`, если структура пустая
+  * `Value maxValue()` - возвращает значение, ассоцирированное с максимальным ключом, или `null`, если структура пустая
+  * `Key floor(Key key)` - возвращает максимальный ключ, меньший либо равный заданному, или `null`, если такого нет
+  * `Key ceil(Key key)` - вовзращает минимальный ключ, больший либо равный заданному, или `null`, если такого нет
+
+Служебные методы:
+  * `int size()` - вовзращает количество узлов в дереве
+  * `int height()` - возвращает высоту дерева (максимальная длина пути от корня до листа)
+
+Локально запускать тесты можно через
+```commandline
+./gradlew test
+```
+
+## ДЗ 7. RB-tree. Дедлайн 15.11.2022 18:29:59
+
+‼️ Ветка с решением должна ответвляться от коммита [0831f19beb82ce628e4f7284f8c02ce994dd0eb5](https://github.com/polis-vk/2022-ads/commit/0831f19beb82ce628e4f7284f8c02ce994dd0eb5):
+
+```bash
+$ git fetch upstream
+$ git checkout -b <my-branch-for-part7> 0831f19beb82ce628e4f7284f8c02ce994dd0eb5
+```
+
+Реализовать Left-Leaning Red-Black Tree в `company.vk.polis.ads.bst.RedBlackBinarySearchTree`, чтобы выполнялись тесты `company.vk.polis.ads.bst.RedBlackBinarySearchTreeTest`.
+
+Решения с использованием библиотечных структур данных
+(`TreeMap`, которая на самом деле работает на красно-черных деревьях из Кормена) не принимаются.
+
+Основные методы:
+  * `Value get(Key key)` - возвращает значение по заданному ключу или `null`, если такого ключа нет
+  * `void put(Key key, Value value)` - сохраняет заданное значение по указанному ключу
+  * `Value remove(Key key)` - удаляет заданный ключ (и связанное с ним значение, возвращая его)
+
+Методы, основанные на порядке ключей:
+  * `Key min()` - возвращает минимальный ключ или `null`, если структура пустая
+  * `Value minValue()` - возвращает значение, ассоцирированное с минимальным ключом, или `null`, если структура пустая
+  * `Key max()` - возвращает максимальный ключ или `null`, если структура пустая
+  * `Value maxValue()` - возвращает значение, ассоцирированное с максимальным ключом, или `null`, если структура пустая
+  * `Key floor(Key key)` - возвращает максимальный ключ, меньший либо равный заданному, или `null`, если такого нет
+  * `Key ceil(Key key)` - вовзращает минимальный ключ, больший либо равный заданному, или `null`, если такого нет
+
+Служебные методы:
+  * `int size()` - вовзращает количество узлов в дереве
+  * `int height()` - возвращает высоту дерева (достаточно простой рекурсивной реализации, хранить высоту в узле не обязательно)
+
+Локально запускать тесты можно через
+```commandline
+./gradlew test
+```
+
+## ДЗ 8. Hash tables. Дедлайн 22.11.2022 18:29:59
+
+‼️ Ветка с решением должна ответвляться от коммита [90e687c4e6e9d32e992c5c11b58940a6bd9fcf11](https://github.com/polis-vk/2022-ads/commit/90e687c4e6e9d32e992c5c11b58940a6bd9fcf11):
+
+```bash
+$ git fetch upstream
+$ git checkout -b <my-branch-for-part8> 90e687c4e6e9d32e992c5c11b58940a6bd9fcf11
+```
+
+* Реализовать в `company.vk.polis.ads.hash.SeparateChainingMap` и `company.vk.polis.ads.hash.DoubleHashingMap` методы, чтобы выполнялись все тесты в `company.vk.polis.ads.hash.MapTest`
+
+Локально запускать тесты можно через
+```commandline
+./gradlew test
+```
+
+## ДЗ 9. Графы 1. Дедлайн 29.11.2022 18:29:59
+
+Задачки с e-olymp:
+
+* https://www.eolymp.com/ru/problems/4853 - Кратчайший путь
+* https://www.eolymp.com/ru/problems/1948 - Топологическая сортировка
+* https://www.eolymp.com/ru/problems/2022 - Циклы в графе
+* https://www.eolymp.com/ru/problems/1947 - Конденсация графа
+
+## ДЗ 10. Графы 2. Дедлайн 06.12.2022 18:29:59
+
+Задачки с e-olymp:
+
+* https://www.eolymp.com/ru/problems/3835 - Минимальный каркас
+* https://www.eolymp.com/ru/problems/4856 - Кратчайший путь
+* https://www.eolymp.com/ru/problems/1453 - Форд-Беллман
+
+Опциональная задача (будет круто, если решите, возможно пойдет в доп баллы):
+* https://www.eolymp.com/ru/problems/325 - Опасный маршрут
